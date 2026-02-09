@@ -1,0 +1,57 @@
+{
+  "id": "Violoncello",
+  "name": "Violoncello Text Browser",
+  "interaction_mode": "traditional",
+  "chrome": {
+    "statusbar": "visible"
+  },
+  "short_name": "Violoncello",
+  "description": "Text-only web browser optimized for KaiOS devices. Fast loading with dark/light/sepia color modes.",
+  "lang": "en-US",
+  "theme_color": "#4458be",
+  "orientation": "portrait-primary",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "scope": "/",
+  "dir": "ltr",
+  "categories": ["utilities"],
+  "subtitle": "Text-Based Web Browser",
+  "background_color": "#000000",
+  "developer": {
+    "name": "John Spahr",
+    "url": "https://johnspahr.org"
+  },
+  "icons": [
+    {
+      "src": "/assets/icons/kaios_56.png",
+      "type": "image/png",
+      "sizes": "56x56",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/kaios_112.png",
+      "type": "image/png",
+      "sizes": "112x112",
+      "purpose": "any"
+    }
+  ],
+  "b2g_features": {
+    "type": "privileged",
+    "cursor": false,
+    "permissions": {
+      "systemXHR": {
+        "description": "Required to bypass CORS for scraping/DOM parsing"
+      }
+    },
+    "dependencies": {},
+    "developer": {
+      "name": "John Spahr",
+      "url": "https://johnspahr.org"
+    },
+    "chrome": {
+      "navigation": false,
+      "statusbar": "visible"
+    },
+    "version": "3.0.6"
+  }
+}

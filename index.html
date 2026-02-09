@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4458be" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' http: https: data: 'unsafe-inline'; script-src 'self'; style-src 'self' 'unsafe-inline';"
+    />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="./src/css/style.css" />
+  </head>
+  <body>
+    <div id="loading-screen" class="hidden">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div>
+    <div id="url-overlay" class="hidden">
+      <input
+        type="url"
+        id="url-input"
+        placeholder="Search or Enter URL..."
+        tabindex="0"
+      />
+    </div>
+
+    <div id="reader" tabindex="0"></div>
+
+    <div id="option-menu" class="hidden"></div>
+
+    <div id="softkey-bar">
+      <div id="lsk">URL</div>
+      <div id="csk"></div>
+      <div id="rsk">Menu</div>
+    </div>
+
+    <div id="about-screen" class="hidden">
+      <div class="about-content">
+        <h3>Violoncello</h3>
+        <p>Version 3.0.6</p>
+        <hr />
+        <p>Created by <b>John Spahr</b></p>
+        <p>Privacy Info: <i>johnspahr.org/policies</i></p>
+        <br />
+        <p style="font-size: 11px">Press BACK to close</p>
+      </div>
+    </div>
+
+    <noscript>
+      <p
+        style="
+          color: #ff6000;
+          text-align: center;
+          margin-top: 50px;
+          font-size: 14px;
+        "
+      >
+        JavaScript is required to run this app.
+      </p>
+    </noscript>
+
+    <script src="./src/app.js"></script>
+    <script src="./src/kaios-native-ui.js"></script>
+  </body>
+</html>

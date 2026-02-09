@@ -1,0 +1,37 @@
+{
+  "version": "3.0.6",
+  "name": "Violoncello",
+  "description": "Text-only web browser optimized for KaiOS devices. Fast loading with dark/light/sepia color modes.",
+  "launch_path": "/index.html",
+  "type": "privileged",
+  "origin": "app://violoncello.johnspahr.org",
+  "icons": {
+    "56": "/assets/icons/kaios_56.png",
+    "112": "/assets/icons/kaios_112.png"
+  },
+  "developer": {
+    "name": "John Spahr",
+    "url": "https://johnspahr.org"
+  },
+  "permissions": {
+    "systemXHR": {
+      "description": "Required to bypass CORS for scraping/DOM parsing"
+    },
+    "storage": {
+      "description": "Required for history and settings"
+    }
+  },
+  "activities": {
+    "view": {
+      "filters": {
+        "type": "url",
+        "url": { "required": true, "pattern": "https?:.{1,16384}" }
+      },
+      "disposition": "window",
+      "returnValue": true,
+      "href": "/index.html"
+    }
+  },
+  "default_locale": "en-US",
+  "cursor": false
+}

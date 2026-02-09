@@ -1,0 +1,497 @@
+/* --- Global Reset & KaiOS Defaults --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  -moz-user-select: none;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  padding-top: 0;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  /* keep layout flush with system status bar - avoid additional blank gap */
+  padding-top: 0;
+}
+
+/* --- Color Modes --- */
+body.color-dark {
+  background-color: #000;
+  color: #fff;
+}
+
+body.color-light {
+  background-color: #fff;
+  color: #000;
+}
+
+body.color-sepia {
+  background-color: #f4efd3;
+  color: #5a4a2a;
+}
+
+body.color-darkblue {
+  background-color: #0a1929;
+  color: #e0e7ff;
+}
+
+body.color-terminal {
+  background-color: #0b0d11;
+  color: #00ff00;
+  font-family: 'Courier New', monospace;
+}
+
+/* --- Reader Content --- */
+#reader {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  /* account for bottom softkey bar so the app isn't fullscreen-overlapping */
+  max-height: calc(100vh - 30px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0px 10px 50px 10px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
+  position: relative;
+  z-index: 1;
+}
+
+#reader:focus {
+  outline: none;
+}
+
+#reader[aria-hidden='true'] {
+  pointer-events: none;
+}
+
+/* Text Sizes */
+.text-small {
+  font-size: 12px;
+}
+.text-medium {
+  font-size: 15px;
+}
+.text-large {
+  font-size: 19px;
+}
+
+.text-xsmall {
+  font-size: 10px;
+}
+
+.text-xlarge {
+  font-size: 22px;
+}
+
+/* Links */
+.kai-link {
+  color: #00ccff;
+  text-decoration: none;
+  /* use inline display to avoid layout shifts when highlighting */
+  display: inline;
+  padding: 0 2px;
+}
+
+body.color-light .kai-link {
+  color: #0066cc;
+}
+
+body.color-sepia .kai-link {
+  color: #8b4513;
+}
+
+body.color-darkblue .kai-link {
+  color: #64b5f6;
+}
+
+body.color-terminal .kai-link {
+  color: #00ff00;
+}
+
+/* --- URL Overlay --- */
+#url-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#url-input {
+  width: 90%;
+  padding: 10px;
+  background: #fff;
+  color: #000;
+  border: 2px solid #ff6000;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+body.color-light #url-input {
+  background: #f0f0f0;
+  color: #000;
+}
+
+body.color-sepia #url-input {
+  background: #ebe5d9;
+  color: #5a4a2a;
+}
+
+/* --- Menu System --- */
+#option-menu {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: #222;
+  z-index: 2000;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  border-top: 2px solid #ff6000;
+  pointer-events: none;
+}
+
+#option-menu.active {
+  pointer-events: auto;
+}
+
+body.color-light #option-menu {
+  background: #eee;
+  color: #000;
+}
+
+body.color-sepia #option-menu {
+  background: #e8dcc8;
+}
+
+.menu-item {
+  padding: 12px 15px;
+  border-bottom: 1px solid #333;
+  font-size: 16px;
+  color: #eee;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.menu-item::-moz-focus-inner {
+  border: none;
+}
+
+body.color-light .menu-item {
+  color: #000;
+  border-bottom-color: #ddd;
+}
+
+body.color-sepia .menu-item {
+  color: #5a4a2a;
+  border-bottom-color: #d9cdb5;
+}
+
+.menu-item:focus {
+  background: #ff6000 !important;
+  color: #fff !important;
+  outline: 3px solid #ff8800;
+}
+
+/* Link selection highlighting inside the reader */
+.kai-link {
+  color: #00ccff;
+  text-decoration: underline;
+}
+
+.kai-link.link-selected {
+  background: #7a2600;
+  outline: 3px solid #ff8800;
+  outline-offset: -3px;
+  color: #fff !important;
+  /* keep padding minimal so selection doesn't change layout */
+  padding: 0 2px;
+  display: inline;
+}
+
+body.color-light .kai-link.link-selected {
+  background: #cc4400;
+  outline: 3px solid #cc3300;
+  color: #fff !important;
+  padding: 0 2px;
+}
+
+body.color-sepia .kai-link.link-selected {
+  background: #8b4513;
+  outline: 3px solid #8b3300;
+  color: #fff !important;
+  padding: 0 2px;
+}
+
+body.color-darkblue .kai-link.link-selected {
+  background: #1e40af;
+  outline: 3px solid #60a5fa;
+  color: #e0e7ff !important;
+  padding: 0 2px;
+}
+
+body.color-terminal .kai-link.link-selected {
+  /* slightly brighter green background for better readability on TFT displays */
+  background: #003a00;
+  outline: 3px solid #00ff00;
+  color: #00ff00 !important;
+  padding: 0 2px;
+}
+
+/* Dark mode specific override: ensure highlighted links are high-contrast */
+body.color-dark .kai-link.link-selected {
+  background: #6b2200; /* darker orange-brown for better contrast */
+  outline: 3px solid #ff8800;
+  color: #ffffff !important;
+  outline-offset: -3px;
+  padding: 0 2px;
+  display: inline;
+}
+
+body.color-light .menu-item:focus {
+  background: #ff8800 !important;
+}
+
+body.color-sepia .menu-item:focus {
+  background: #d4692d !important;
+}
+
+/* Clashing Fix: Delete Items */
+.menu-delete {
+  background: #331111;
+  color: #ffaaaa;
+  font-size: 14px;
+}
+
+body.color-light .menu-delete {
+  background: #ffcccc;
+  color: #990000;
+}
+
+body.color-sepia .menu-delete {
+  background: #ddc9b3;
+  color: #8b3300;
+}
+
+.menu-delete:focus {
+  background: #cc0000 !important;
+  color: #fff !important;
+}
+
+body.color-light .menu-delete:focus {
+  background: #ee0000 !important;
+}
+
+body.color-sepia .menu-delete:focus {
+  background: #aa3300 !important;
+}
+
+/* --- Softkey Bar --- */
+#softkey-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: #222;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 5000;
+  border-top: 1px solid #444;
+}
+
+body.color-light #softkey-bar {
+  background: #ddd;
+  color: #000;
+  border-top-color: #999;
+}
+
+body.color-sepia #softkey-bar {
+  background: #d9cdb5;
+  color: #5a4a2a;
+  border-top-color: #c9baa5;
+}
+
+#lsk,
+#rsk {
+  width: 35%;
+}
+#csk {
+  width: 30%;
+  text-align: center;
+  color: #ff6000;
+}
+#rsk {
+  text-align: right;
+}
+
+/* --- About Screen --- */
+#about-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 6000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.color-light #about-screen {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+body.color-sepia #about-screen {
+  background: rgba(244, 239, 211, 0.95);
+}
+
+.about-content {
+  background: #fff;
+  color: #000;
+  width: 85%;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+body.color-dark .about-content {
+  background: #222;
+  color: #fff;
+}
+
+body.color-light .about-content {
+  background: #f9f9f9;
+  color: #000;
+}
+
+body.color-sepia .about-content {
+  background: #ebe5d9;
+  color: #5a4a2a;
+}
+
+.about-content h3 {
+  color: #ff6000;
+  margin-bottom: 10px;
+}
+
+body.color-light .about-content h3 {
+  color: #0066cc;
+}
+
+body.color-sepia .about-content h3 {
+  color: #8b4513;
+}
+
+.about-content a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* --- Helpers --- */
+.hidden {
+  display: none !important;
+}
+
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #ff6000;
+}
+
+/* Loading Spinner Animation */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #444;
+  border-top-color: #ff6000;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Notification Styles --- */
+.notification {
+  position: fixed;
+  bottom: 40px;
+  left: 10px;
+  right: 10px;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 10000;
+  text-align: center;
+  color: #fff;
+}
+
+.notification-success {
+  background: #00aa00;
+}
+
+.notification-error {
+  background: #cc0000;
+}
+
+body.color-light .notification-success {
+  background: #00cc00;
+}
+
+body.color-light .notification-error {
+  background: #ee0000;
+}
+
+body.color-sepia .notification-success {
+  background: #8b6914;
+}
+
+body.color-sepia .notification-error {
+  background: #aa3300;
+}
