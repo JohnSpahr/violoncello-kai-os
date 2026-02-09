@@ -15,6 +15,6 @@ Why use Violoncello?
 - Fewer distractions
 - Great for reading articles!
 
-<a href="https://github.com/johnspahr/violoncello-kai-os/screenshots">Screenshots</a>
+<a href="https://github.com/johnspahr/violoncello-kai-os/screenshots/">Screenshots</a>
 
 <a href="https://johnspahr.org/policies">Privacy Policy</a>
